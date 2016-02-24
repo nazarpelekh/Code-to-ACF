@@ -31,3 +31,26 @@
         <?php endwhile; ?>
     </div>
 <?php endif; ?>
+
+<!-- alert posts -->
+
+<?php if ( $wp_query->have_posts() ) : ?>
+
+    <?php $args = array(
+        'post_type' => 'product',
+        'posts_per_page' => '3',
+    );
+    $wp_query = new WP_Query( $args );
+    while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
+        <div class="swiper-slide" style="">
+            <h4><?php the_title(); ?></h4>
+            <span><?php the_field('subtitle'); ?></span>
+            <strong><?php the_field('price'); ?></strong>
+            <a href="<?php the_permalink(); ?>" class="button"></a>
+        </div>
+    <?php endwhile; ?>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+
+<?php endif; ?>
+<?php wp_reset_query(); ?>
