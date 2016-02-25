@@ -54,3 +54,6 @@
 
 <?php endif; ?>
 <?php wp_reset_query(); ?>
+
+<!-- alert image -->
+<?php echo image_src(get_field('luxury_background'), 'full', true); ?> <!-- true is parameter background-image -->
