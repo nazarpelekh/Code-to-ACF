@@ -32,6 +32,18 @@
     </div>
 <?php endif; ?>
 
+<!-- another version-->
+
+<?php if ($repeater_name = get_field('repeater_name' )) { ?>
+    <?php foreach ($repeater_name as $name) { ?>
+        <div class="item">
+            <img src="<?php echo image_src($name['image'], 'small'); ?>" alt="">
+            <strong><?php echo $name['title']; ?></strong>
+            <p><?php echo $name['text']; ?></p>
+        </div>
+    <?php } ?>
+<?php } ?>
+
 <!-- alert posts -->
 
 <?php if ( $wp_query->have_posts() ) : ?>
