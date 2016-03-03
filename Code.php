@@ -69,3 +69,85 @@
 
 <!-- alert image -->
 <?php echo image_src(get_field('luxury_background'), 'full', true); ?> <!-- true is parameter background-image -->
+
+
+
+
+
+<!--site-->
+<?php get_header();
+$term = get_queried_object();
+$cID = $term->term_id;
+$children = get_terms( $term->taxonomy, array(
+    'parent'    => $cID,
+    'hide_empty' => false,
+    'orderby' => 'term_order',
+    'order' => 'ASC',
+    'hide_empty'        => 0,
+    'parent'        => 0,
+    'taxonomy'      => 'category'
+));
+?>
+<section class="content">
+    <div class="top option" style="<?php echo image_src(get_field('blog_background', 'option'), 'full', true); ?>">
+        <div class="wrap">
+            <div class="category">
+                <?php
+
+                $libargs=array(
+                    'hide_empty'        => 0,
+                    'parent'        => 0,
+                    'taxonomy'      => 'category');
+
+                $libcats=get_categories($libargs);
+
+                foreach($libcats as $lc){ ?>
+                    <a class="single-cat" href="<?php echo get_category_link($lc->term_id); ?>">
+                        <img src="<?php echo image_src(get_field('image_cat', 'category_'.$lc->term_id), 'category'); ?>" />
+                        <div class="bottom">
+                            <span><?php echo $lc->name; ?></span>
+                        </div>
+                    </a>
+
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+    <div class="wrap">
+        <article>
+            <h3><?php single_cat_title( '', true ); ?></h3>
+            <div class="posts">
+<!--                --><?php //if (have_posts()) : while (have_posts()) : the_post(); ?>
+<!--                    <div class="post">-->
+<!--                        --><?php //$thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'post', true ); { ?>
+<!--                            <a href="--><?php //the_permalink(); ?><!--">-->
+<!--                                <img src="--><?php //echo $thumb[0]; ?><!--" alt="">-->
+<!--                            </a>-->
+<!--                        --><?php //} ?>
+<!--                        <h5><a href="--><?php //the_permalink(); ?><!--">--><?php //the_title(); ?><!--</a></h5>-->
+<!--                    </div>-->
+<!--                --><?php //endwhile; endif; ?>
+                <?php
+
+                $lib=array(
+                    'parent'        => $lc,);
+
+                $lib=get_categories($lib);
+
+                foreach($lib as $lic){ ?>
+                    <a class="single-cat" href="<?php echo get_category_link($lic->term_id); ?>">
+                        <img src="<?php echo image_src(get_field('image_cat', 'category_'.$lic->term_id), 'category'); ?>" />
+                        <div class="bottom">
+                            <span><?php echo $lic->name; ?></span>
+                        </div>
+                    </a>
+
+                <?php } ?>
+            </div>
+        </article>
+        <aside>
+            <?php require_once('sidebar.php') ?>
+        </aside>
+    </div>
+</section>
+<?php get_footer(); ?>
