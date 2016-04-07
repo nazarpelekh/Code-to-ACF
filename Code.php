@@ -69,3 +69,21 @@
 
 <!-- alert image -->
 <?php echo image_src(get_field('luxury_background'), 'full', true); ?> <!-- true is parameter background-image -->
+
+/ ------------------------------------- /
+/* Allow Contact Form 7 Forms to include shortcodes
+/ ------------------------------------- /
+
+ add_filter( 'wpcf7_form_elements', 'mycustom_wpcf7_form_elements' ); 
+ function mycustom_wpcf7_form_elements( $form ) {
+  $form = parse_shortcode_content( $form );
+  $array = array (
+                 '<p>[' => '[',
+                 ']</p>' => ']',
+                 ']<br />' => ']'
+         );
+ 
+     $form = strtr($form, $array);
+  $form = do_shortcode( $form );
+  return $form;
+ }
