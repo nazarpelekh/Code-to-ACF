@@ -110,3 +110,6 @@ if( function_exists('acf_add_options_page') ) {
         'parent_slug'   => 'theme-general-settings',
     ));
 }
+
+<!-- shortcode for Contact Form 7 -->
+<?php echo do_shortcode('[contact-form-7 id="188" title="Main Contact Form"]'); ?>
