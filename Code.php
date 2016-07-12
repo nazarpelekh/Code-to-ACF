@@ -113,3 +113,6 @@ if( function_exists('acf_add_options_page') ) {
 
 <!-- shortcode for Contact Form 7 -->
 <?php echo do_shortcode('[contact-form-7 id="188" title="Main Contact Form"]'); ?>
+
+<!-- echo svg icon -->
+<?php echo file_get_contents($it["picture"]); ?>
