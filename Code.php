@@ -94,3 +94,6 @@
 
 <!-- echo svg icon -->
 <?php echo file_get_contents($it["picture"]); ?>
+
+<!-- echo yoast breadcrumbs -->
+<?php if (function_exists('yoast_breadcrumb')) yoast_breadcrumb('<div class="breadcrumbs__inner">', '</div>'); ?>
