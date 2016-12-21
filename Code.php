@@ -1,3 +1,5 @@
+/* Template Name: Example Template */
+
 <!-- flex -->
 <?php if ( get_field('flex_name') ): ?>
     <?php while ( has_sub_field('flex_name') ): ?>
