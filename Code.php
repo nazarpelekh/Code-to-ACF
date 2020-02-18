@@ -104,3 +104,18 @@
 <?php if ($contact_map = get_field('map')) {
 	echo do_shortcode('[googlemap id="contact_map" height="460px" coordinates="' .$contact_map['lat']. ', ' .$contact_map['lng']. '"][/googlemap]');
 } ?>
+
+<?php
+// Must have wp_pagenavi plugin installed. Custom Post Type names can not clash with page names or 404's will occur on /page/#/ (Utilize Custom Rewrite Slug in CPT)
+
+            // The press release loop
+            $the_press = new WP_Query(array('post_type' => 'press-releases','posts_per_page' => 10,'paged'=> get_query_var('paged') ));
+            // The Loop
+            while ($the_press->have_posts()) : $the_press->the_post();
+                ?>
+                <h2><?php the_title(); ?></h2>
+                <p><?php the_excerpt(); ?></p>
+                <p><a href="<?php echo the_permalink(); ?>" >Read More</a></p>
+            <?php endwhile; ?>
+            <?php if(function_exists('wp_pagenavi')) { wp_pagenavi(array('query'=> $the_press));} ?>
+<?php wp_reset_postdata();?>
